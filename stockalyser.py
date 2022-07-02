@@ -28,12 +28,17 @@ def getstonks():
   stocks = []
 
   with open("stocks.txt", "r") as stocksfile:
-    bar = Bar(f'Fetching stocks for {str(len(stocks))} companies', max=len(stocks))
+    for count, _ in enumerate(stocksfile):
+        pass
+    count += 1
+    print(count)
+    bar = Bar(f'Fetching stocks for {str(count)} companies', max=count)
     for line in stocksfile:
       if line:
         stocks.append(getdata(line.strip().upper(), "30d"))
       bar.next()
     bar.finish
+    print("")
   with open("stocksdata.txt", "r") as stocksdatafile:
     try: 
       currentpercent = stocksdatafile.readline().split()[-1]
